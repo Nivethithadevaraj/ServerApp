@@ -12,7 +12,7 @@ namespace ServerApp.Model
 
 		public void Start(int port)
 		{
-			listener = new TcpListener(IPAddress.Any, port);
+			listener = new TcpListener(IPAddress.Loopback, port);
 			listener.Start();
 			client = listener.AcceptTcpClient();
 			stream = client.GetStream();

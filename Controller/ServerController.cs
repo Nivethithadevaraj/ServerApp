@@ -1,4 +1,3 @@
-using System;
 using ServerApp.Model;
 using ServerApp.View;
 
@@ -20,22 +19,20 @@ namespace ServerApp.Controller
             try
             {
                 server.Start(port);
-                view.ShowInfo($"Server started on port {port}. Waiting for client...");
+                view.ShowInfo($"Server started on 127.0.0.1:{port}");
 
                 while (true)
                 {
                     string clientMsg = server.ReceiveMessage();
-                    Message received = new Message(clientMsg, "Client");
+                    var received = new Message(clientMsg, "Client");
                     view.ShowMessage(received);
 
-                    if (clientMsg.ToLower() == "exit")
-                        break;
+                    if (clientMsg.ToLower() == "exit") break;
 
                     string reply = view.GetInput("Server");
                     server.SendMessage(reply);
 
-                    if (reply.ToLower() == "exit")
-                        break;
+                    if (reply.ToLower() == "exit") break;
                 }
             }
             catch (Exception ex)

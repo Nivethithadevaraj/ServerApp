@@ -12,7 +12,8 @@ namespace ServerApp
             ChatServer server = new ChatServer();
             ServerController controller = new ServerController(view, server);
 
-            controller.Run(8888); // you can change port here
+            int port = 8888; // fixed port
+            controller.Run(port);
         }
     }
 }
